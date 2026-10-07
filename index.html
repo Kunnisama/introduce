@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malli / Kunni's Profile ୨ৎ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0d11;
+            --card-bg: #1a1520;
+            --card-inner: #231b2b;
+            --pink-accent: #f2a6c4;
+            --pink-soft: #fbe3ed;
+            --dark-pink: #9e4b6c;
+            --purple-soft: #d3b8e5;
+            --text-color: #e6e1e5;
+            --text-muted: #b8afb8;
+            --border-lace: #3a2a3f;
+            --warning-bg: #2d1720;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            background-image: radial-gradient(#2a1f2d 1px, transparent 1px);
+            background-size: 20px 20px;
+            position: relative;
+            overflow-x: hidden;
+            padding-bottom: 50px;
+        }
+
+        /* 🌸 เอฟเฟกต์ประดับร่วงหล่น */
+        .petal {
+            position: fixed;
+            top: -20px;
+            pointer-events: none;
+            z-index: 1;
+            user-select: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            background: linear-gradient(180deg, #25162a 0%, var(--bg-color) 100%);
+            border-bottom: 2px dashed var(--pink-accent);
+            position: relative;
+            z-index: 10;
+        }
+
+        .ribbon-tag {
+            display: inline-block;
+            background: var(--dark-pink);
+            color: #fff;
+            padding: 4px 18px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(242, 166, 196, 0.3);
+            margin-bottom: 12px;
+        }
+
+        h1.title {
+            font-family: 'Charm', cursive;
+            font-size: 2.8em;
+            color: var(--pink-accent);
+            margin: 5px 0;
+            text-shadow: 0 0 12px rgba(242, 166, 196, 0.4);
+        }
+
+        .subtitle {
+            font-size: 0.95em;
+            color: var(--pink-soft);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 🎵 Mini Audio Player */
+        .audio-player {
+            background: rgba(242, 166, 196, 0.08);
+            border: 1px solid var(--dark-pink);
+            border-radius: 16px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(5px);
+        }
+
+        .play-btn {
+            background: var(--dark-pink);
+            color: #fff;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.08);
+            background: var(--pink-accent);
+        }
+
+        .audio-info { flex-grow: 1; }
+        .audio-title { font-weight: bold; color: var(--pink-accent); font-size: 0.95em; }
+        .audio-sub { font-size: 0.8em; color: var(--text-muted); }
+
+        /* 🃏 Main Profile Card */
+        .card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-lace);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        .card::before {
+            content: "୨ৎ 𝑰𝒏𝒕𝒓𝒐𝒅𝒖𝒄𝒕𝒐𝒓𝒚 ୨ৎ";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark-pink);
+            color: var(--pink-soft);
+            font-size: 0.85em;
+            padding: 2px 20px;
+            border-radius: 12px;
+            font-family: 'Charm', cursive;
+            border: 1px solid var(--pink-accent);
+        }
+
+        /* 🗂️ Tab Navigation */
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            border-bottom: 2px solid var(--border-lace);
+            margin-bottom: 25px;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 10px 16px;
+            font-size: 1em;
+            cursor: pointer;
+            font-family: 'Charm', cursive;
+            font-weight: bold;
+            transition: 0.3s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab-btn:hover { color: var(--pink-soft); }
+        .tab-btn.active {
+            color: var(--pink-accent);
+            border-bottom: 3px solid var(--pink-accent);
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 💬 Dialogue Generator */
+        .dialogue-box {
+            background: var(--card-inner);
+            border-left: 4px solid var(--pink-accent);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .dialogue-text { font-style: italic; color: var(--pink-soft); min-height: 48px; }
+
+        .random-btn {
+            background: var(--dark-pink);
+            color: #fff;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+
+        .random-btn:hover { background: var(--pink-accent); color: #000; }
+
+        /* 🏷️ Badge & Tag */
+        .badge {
+            display: inline-block;
+            background: rgba(242, 166, 196, 0.15);
+            color: var(--pink-soft);
+            padding: 2px 10px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            border: 1px solid var(--dark-pink);
+            margin: 3px;
+        }
+
+        .badge-highlight {
+            background: var(--dark-pink);
+            color: #fff;
+        }
+
+        /* ⚠️ Warning Card (DNI & TW) */
+        .warning-box {
+            background: var(--warning-bg);
+            border: 1px solid #722f37;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .warning-title {
+            color: #f8a5a5;
+            font-weight: bold;
+            font-size: 1.05em;
+            margin-bottom: 8px;
+        }
+
+        /* 🔗 Links & Social Buttons */
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .link-card {
+            background: var(--card-inner);
+            border: 1px solid var(--dark-pink);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+            color: var(--pink-soft);
+            text-decoration: none;
+            transition: 0.3s;
+            display: block;
+        }
+
+        .link-card:hover {
+            background: var(--dark-pink);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(242, 166, 196, 0.3);
+        }
+
+        /* 🌸 Profile Info List */
+        .info-list { list-style: none; padding: 0; }
+        .info-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .info-list li::before { content: "୨ৎ"; position: absolute; left: 0; color: var(--pink-accent); }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.85em;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="ribbon-tag">✦ WELCOME TO MY SAFE SPACE ✦</div>
+        <h1 class="title">Malli & Kunni</h1>
+        <div class="subtitle">🐰 กระตุ่ยแก่ ๆ ตัวหนึ่ง • INTJ 5w4 • Age 18↓</div>
+        <div style="font-size: 0.8em; color: var(--text-muted); margin-top: 8px;">Update │ 29 / 03 / 69</div>
+    </header>
+
+    <div class="container">
+
+        <!-- 🎵 1. Mini Audio Player -->
+        <div class="audio-player">
+            <button class="play-btn" id="playBtn" onclick="toggleAudio()">▶</button>
+            <div class="audio-info">
+                <div class="audio-title">Bungou Stray Dogs BGM - Dazai & Chuuya Theme</div>
+                <div class="audio-sub">BGM คลอขณะอ่านโปรไฟล์ 🤍</div>
+            </div>
+            <!-- สามารถนำ URL ลิงก์เพลง .mp3 ของคุณมาเปลี่ยนใส่ใน src ได้เลย -->
+            <audio id="bgm" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
+        </div>
+
+        <!-- 🃏 Main Profile Card -->
+        <div class="card">
+            
+            <!-- 🗂️ 2. Tab Navigation -->
+            <div class="tab-menu">
+                <button class="tab-btn active" onclick="openTab(event, 'tab-about')">About Me</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-yume')">Yume & Favs</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-dni')">DNI & TW</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-links')">Contact & Links</button>
+            </div>
+
+            <!-- 📌 Tab 1: About Me -->
+            <div id="tab-about" class="tab-content active">
+                
+                <!-- 💬 Dialogue Box -->
+                <div class="dialogue-box">
+                    <div class="dialogue-text" id="dialogueText">"สวัสดีค่ะ แวะมาเวิ่น มาแชร์รูป หรือทักทายกันได้เสมอเลยนะคะ 🤍"</div>
+                    <button class="random-btn" onclick="randomQuote()">🎲 สุ่มข้อความทักทาย</button>
+                </div>
+
+                <h3 style="color: var(--pink-accent); font-family: 'Charm', cursive;">₊ ⊹ Profile Summary</h3>
+                <ul class="info-list">
+                    <li><strong>Nickname:</strong> Malli (มัลลิ) / Kunni (คุนนิ)</li>
+                    <li><strong>Age:</strong> 18↓</li>
+                    <li><strong>MBTI:</strong> INTJ • 5w4</li>
+                    <li><strong>Fandoms:</strong> Bungou Stray Dogs, Twisted Wonderland, Identity V, Honkai: Star Rail, Genshin Impact</li>
+                </ul>
+
+                <hr style="border: 0; border-top: 1px dashed var(--border-lace); margin: 20px 0;">
+
+                <h3 style="color: var(--pink-accent); font-family: 'Charm', cursive;">🐰 About Me & Health</h3>
+                <p>สวัสดีค่ะ เค้าเป็นกระตุ่ยแก่ ๆ ตัวหนึ่ง เอเนอร์จี้ขึ้น ๆ ลง ๆ บางวันก็คึกมาก บางวันก็หมดไฟง่ายค่ะ ฮ่า ๆ</p>
+                <p>เค้าเป็นคนขี้โรคพอสมควร เข้าโรงพยาบาลค่อนข้างบ่อย หากหายไปโดยไม่แจ้ง ไม่ต้องตกใจน้า ช่วงที่แข็งแรงจะติดโซเชียลมากเลยค่ะ! 🤍</p>
+                <p>อยากมีเพื่อนที่แอคทีฟกันนิดหน่อย แวะมากดใจ คอมเมนต์ หรือทักทายกันเดือนละ 2–3 ครั้งก็ดีใจมากแล้วค่ะ (ถ้าคุณแอคทีฟ ระวังโดนระเบิดไลก์นะคะ 🤏🏻)</p>
+
+                <hr style="border: 0; border-top: 1px dashed var(--border-lace); margin: 20px 0;">
+
+                <h3 style="color: var(--pink-accent); font-family: 'Charm', cursive;">⏰ Active Time</h3>
+                <div style="background: var(--card-inner); padding: 15px; border-radius: 12px; font-size: 0.9em;">
+                    <p>✦ <strong>Mon – Fri:</strong> 09:00 AM – 11:00 PM</p>
+                    <p>✦ <strong>Sat – Sun:</strong> 08:00 AM – 01:00 PM / 08:00 PM – 12:00 AM</p>
+                    <p>✦ <strong>Holidays:</strong> 08:00 AM – 10:00 PM</p>
+                    <span style="color: var(--text-muted); font-size: 0.85em;">*เวลาที่ไม่ได้ตอบ อาจกำลังเรียน ทำงาน วาดรูป หรือพักรักษาตัวอยู่นะคะ</span>
+                </div>
+            </div>
+
+            <!-- 💙 Tab 2: Yume & Favorite Characters -->
+            <div id="tab-yume" class="tab-content">
+                <h3 style="color: var(--pink-accent); font-family: 'Charm', cursive;">💙 Favorite Characters: Dazai & Chuuya</h3>
+                <p><strong>I LOVE DAZAI & CHUUYA (Dachuu Only 💙🧡)</strong></p>
+                <p style="font-size: 0.9em; color: var(--pink-soft);">
+                    มองดาไซเป็นสามี และชูยะเป็นภรรยางับ ♡ ทั้งสองคนเป็นหนึ่งในคุณค่าทางจิตใจ เป็นพื้นที่ปลอดภัยที่ไม่ว่าจะหนีไปด้อมไหนก็กลับมาหาเสมอค่ะ
+                </p>
+
+                <hr style="border: 0; border-top: 1px dashed var(--border-lace); margin: 20px 0;">
+
+                <h3 style="color: var(--pink-accent); font-family: 'Charm', cursive;">🌸 Active Yume Pairs</h3>
+                
+                <div style="background: var(--card-inner); padding: 15px; border-radius: 12px; margin-bottom: 15px; border-left: 3px solid var(--pink-accent);">
+                    <div style="font-weight: bold; color: var(--pink-accent);">1. Dazai × Yukio</div>
+                    <div style="font-size: 0.85em; color: var(--text-muted);">#DaYuki #อัญมณีสีครามกับดวงดาราสีนิล</div>
+                </div>
+
+                <div style="background: var(--card-inner); padding: 15px; border-radius: 12px; margin-bottom: 15px; border-left: 3px solid var(--dark-pink);">
+                    <div style="font-weight: bold; color: var(--pink-soft);">2. Dazai × Malli × Chuuya (3P • Self Ship)</div>
+                    <div style="font-size: 0.85em; color: var(--text-muted);">#MalliChuu #รับรักเค้าได้ไหมคะคุณชายขี้วีน</div>
+                    <span style="font-size: 0.8em; color: var(--purple-soft);">⟡ Character's gender has been changed from original.</span>
+                </div>
+
+                <hr style="border: 0; border-top: 1px dashed var(--border-lace); margin: 20px 0;">
+
+                <h3 style="color: var(--pink-accent); font-family: 'Charm', cursive;">📌 Yume Terms & Shipping Policy</h3>
+                <ul class="info-list" style="font-size: 0.9em;">
+                    <li><strong>การคีพ:</strong> ไม่ค่อยคีพให้ใคร ยกเว้นคนที่สบายใจด้วยมาก ๆ จะคีพให้เองค่ะ (คุยกันก่อนได้)</li>
+                    <li><strong>ถ้าแค่เมน:</strong> คุยกันได้เลยค่ะ! แต่ขอไม่มองดาไซ/ชูยะเป็นสามี/ภรรยา/แฟน</li>
+                    <li><strong>เรื่องการชิป:</strong> ฟิคโพมาก ๆ ไม่ค่อยสลับโพ แต่เมคกับคนสวนโพได้ (ยกเว้นนักวาด ขอไม่รับนะคะ)</li>
+                    <li><strong>เรื่องแพลนงอก:</strong> <span style="color: #f8a5a5;">หากยูเมะชนกับ Dazai หรือ Chuuya ขออนุญาตบล็อกทันทีเพื่อเซฟใจตนเองค่ะ</span></li>
+                    <li><strong>งานวาด:</strong> <span style="color: #f8a5a5;">ไม่สะดวกใจเห็นงานวาด OC / Self Ship คู่กับ Dazai หรือ Chuuya ทุกกรณี</span></li>
+                </ul>
+            </div>
+
+            <!-- ⚠️ Tab 3: DNI & TW -->
+            <div id="tab-dni" class="tab-content">
+                
+                <div class="warning-box">
+                    <div class="warning-title">₊ ⊹ ୨ৎ DNI (Do Not Interact) ୨ৎ ⊹ ₊</div>
+                    <ul style="padding-left: 18px; font-size: 0.88em;">
+                        <li>เปโด / คนไร้มารยาท ไม่ให้เกียรติผู้อื่น</li>
+                        <li>นำประเด็นข่มขืนมาทำเป็นเรื่องตลก ล้อเลียน หรือสนับสนุน</li>
+                        <li>คนเกลียด Dazai / Chuuya หรือเกลียดในนามคู่ชิป</li>
+                        <li><strong>โรคกลัวรู (Trypophobia):</strong> หากโพสต์ภาพที่มีรูจำนวนมาก รบกวนตั้งค่าเฉพาะเพื่อนหรือปิดการมองเห็นของเค้าด้วยนะคะ</li>
+                        <li><strong>การทักเรื่องเพศ:</strong> ไม่ซักถาม ตื้อ หรือแซวเกี่ยวกับเรื่องเพศ ให้รับรู้แค่ว่าเค้าเป็นผู้หญิงก็พอค่ะ ♡</li>
+                        <li>คนอารมณ์ร้อน หยาบคาย ขี้วีน หรือติดรูทหนักมาก</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box" style="background: rgba(158, 75, 108, 0.15); border-color: var(--dark-pink);">
+                    <div class="warning-title" style="color: var(--pink-accent);">₊ ⊹ ୨ৎ Trigger Warnings (TW) & Health ୨ৎ ⊹ ₊</div>
+                    <p style="font-size: 0.88em;">
+                        เค้ามีปัญหาเกี่ยวกับสุขภาพจิต (โรคซึมเศร้า เซนซิทีฟมาก และมีอาการแพนิครุนแรง) บางช่วงอาจมีความคิดด้านลบ บ่นเยอะ หรือจำเป็นต้องเข้าโรงพยาบาลกะทันหัน ไม่ได้โกรธใครนะคะ แค่กำลังดูแลตัวเองอยู่ค่ะ 🤍
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- 🔗 Tab 4: Contact & Links -->
+            <div id="tab-links" class="tab-content">
+                <h3 style="color: var(--pink-accent); font-family: 'Charm', cursive;">📱 Social Media & Links</h3>
+                
+                <div class="link-grid">
+                    <a href="https://www.instagram.com/kunni_sama" target="_blank" class="link-card">
+                        📸 <strong>Instagram</strong><br>
+                        <span style="font-size: 0.8em; color: var(--text-muted);">@kunni_sama</span>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@Kunnisama" target="_blank" class="link-card">
+                        🎨 <strong>TikTok (Art Account)</strong><br>
+                        <span style="font-size: 0.8em; color: var(--text-muted);">@Kunnisama</span>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@Kunni_sama" target="_blank" class="link-card">
+                        🎀 <strong>TikTok (Yume Account)</strong><br>
+                        <span style="font-size: 0.8em; color: var(--text-muted);">@Kunni_sama</span>
+                    </a>
+
+                    <a href="https://docs.google.com/spreadsheets/d/1KST9YW8Pg433loFIumMZNALMM8nuaAacg5-3Gip7Icw/edit?usp=drivesdk" target="_blank" class="link-card" style="border-color: var(--pink-accent);">
+                        📊 <strong>Link Yume Spreadsheet</strong><br>
+                        <span style="font-size: 0.8em; color: var(--text-muted);">ตารางเช็กข้อมูลยูเมะ</span>
+                    </a>
+
+                    <a href="https://www.facebook.com/share/p/1894aCWjJ1/" target="_blank" class="link-card">
+                        📖 <strong>Facebook: About Me Post</strong><br>
+                        <span style="font-size: 0.8em; color: var(--text-muted);">อ่านเพิ่มเติมเกี่ยวกับเค้า</span>
+                    </a>
+
+                    <a href="https://www.facebook.com/share/p/1BCLVR3cHf/" target="_blank" class="link-card">
+                        📝 <strong>Facebook: Yume Details</strong><br>
+                        <span style="font-size: 0.8em; color: var(--text-muted);">รายละเอียดและข้อตกลงยูเมะ</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        ₊ ⊹ Thank you for visiting ୨ৎ Malli & Kunni Profile ⊹ ₊
+    </footer>
+
+    <!-- 🌸 JavaScript คุมระบบทั้งหมด -->
+    <script>
+        // 1. ระบบสลับ Tab
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // 2. ระบบสุ่มคำพูด
+        const quotes = [
+            '"สวัสดีค่ะ แวะมาเวิ่น มาแชร์รูป หรือทักทายกันได้เสมอเลยนะคะ 🤍"',
+            '"ถ้าคุณแอคทีฟกับเค้า เค้าก็พร้อมแอคทีฟกลับค่ะ (ระวังโดนระเบิดไลก์น้า 🤏🏻)"',
+            '"สำหรับคนคนที่อยู่ด้วยกันมาหลายปี เค้าไม่ทิ้งแน่นอนค่ะ ขอบคุณที่อยู่ด้วยกันนะคะ 🤍"',
+            '"ถึงเค้าจะไม่ค่อยทักก่อน แต่แอบส่องบ้านทุกคนอยู่เรื่อย ๆ นะคะ ฮ่า ๆ"'
+        ];
+
+        function randomQuote() {
+            const dialogueText = document.getElementById('dialogueText');
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            dialogueText.innerText = quotes[randomIndex];
+        }
+
+        // 3. ระบบเล่นเพลง (Audio Player)
+        function toggleAudio() {
+            const audio = document.getElementById('bgm');
+            const playBtn = document.getElementById('playBtn');
+
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerText = '❚❚';
+            } else {
+                audio.pause();
+                playBtn.innerText = '▶';
+            }
+        }
+
+        // 4. สร้างเอฟเฟกต์โบว์/ดอกไม้ร่วงหล่น
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            const items = ['🌸', '🌷', '🎀', '🤍', '🐰', '💙'];
+            petal.innerText = items[Math.floor(Math.random() * items.length)];
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.fontSize = (Math.random() * 8 + 12) + 'px';
+            const duration = Math.random() * 3 + 4;
+            petal.style.animationDuration = duration + 's';
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), duration * 1000);
+        }
+        setInterval(createPetal, 450);
+    </script>
+
+</body>
+</html>
+    
